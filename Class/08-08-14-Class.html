@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Paycheck</title>
+        <!--
+        	James Leduc
+            Sep 8, 2014
+            Purpose: Investigate the Branching Constructs
+        -->
+</head>
+    
+    <body>
+    	<script type="text/javascript">
+		
+			<!-- Using an IF/ELSE Statement -->
+			var hours = parseInt(Math.random()*20+30); <!-- Get random hours from 20 to 50. -->
+			var payrate = Math.random()*9+6; <!-- Get random payrate from 9 to 15. -->
+				payrate=payrate.toFixed(2);
+			var paycheck; <!-- Paycheck variable -->
+			
+			if(hours <= 40){
+				paycheck = hours*payrate;
+			}else{
+				paycheck = 40*payrate + ((hours-40)*(2*payrate));
+			}
+			
+			paycheck=paycheck.toFixed(2);
+			
+			document.write("<h1>This is generated using an IF/ELSE Statement!</h1>");
+			document.write("<h2>You worked " + hours + " hours at $" + payrate + " per hour and made $" + paycheck + " this month.</h2>");
+			
+			<!-- Using a Switch Statement -->
+			var wkHours=parseInt(Math.random()*20+30); <!-- randm number between 20 and 50 -->
+			var ot=40; <!-- Overtime begins at 40 hours -->
+			var pRate=10; <!-- $10 per hour.
+				pRate=pRate.toFixed(2);
+			var pCheck;
+
+			switch(wkHours<ot){
+				case true:{
+					pCheck=wkHours*pRate;
+					break;
+				}
+				default:{
+					pCheck=wkHours*pRrate+(hours-ot)*pRate;
+				}
+			}
+			
+			pCheck=pCheck.toFixed(2);
+
+			document.write("<h1>This is generated using a Switch Statement!</h1>");
+			document.write("<h2>You worked " + wkHours + " hours at $" + pRate + " per hour and made $" + pCheck + " this month.</h2>");
+			
+		</script>
+    </body>
+</html>
