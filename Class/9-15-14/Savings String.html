@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <!--
+            Programmer: 	James Leduc
+            Date Created: 	9/15/14
+            Purpose: 		For Loop Construct
+        -->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Savings Table</title>
+    </head>
+    
+    <body>
+    	<h1>Savings Table</h1>
+        <script type="text/javascript">
+			// Create and initialize variables.
+			var balance = 100;	// unit in $'s
+			var intRate = 5;	// interest rate percentage
+			var str="";			// string instead of document.write
+			
+			// Output initial conditions.
+			str+=("<p>Initial Balance = $"+balance+"</p>");
+			str+=("<p>Interest Rate = "+intRate+"%</p>");
+			
+			// Create table
+			str+=("<table width='200' border='1'>");
+			
+			// Generate table headers.
+			str+=("<tr><th>Year</th><th>Savings $</th></tr>");
+			
+			// Generate Table
+			for(var year=0; year <=50; year++){
+				// Same as 	balance = balance * (1+(intRate/100))
+				// and 		balance = balance + (balance*(intRate/100))
+				balance*=(1+(intRate/100)); 
+				str+=("<tr><td>"+year+"</td><td>$ "+balance.toFixed(2)+"</td></tr>");
+			}
+			
+			// Close Table
+			str+=("</table>");
+			document.write(str);
+		</script>
+    </body>
+</html>
