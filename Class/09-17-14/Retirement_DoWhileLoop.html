@@ -3,20 +3,20 @@
     <head>
         <!--
             Programmer: 	James Leduc
-            Date Created: 	9/15/14
-            Purpose: 		For Loop Construct
+            Date Created: 	9/17/14
+            Purpose: 		Do/While Loop Construct
         -->
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Retirement Table</title>
     </head>
     
     <body>
-   	<h1>Retirement Table (For Loop)</h1>
+   	<h1>Retirement Table (Do-While Loop)</h1>
         <script type="text/javascript">
 			// Create and initialize variables.
 			var balance = prompt("Enter a starting balance.");				// unit in $'s
-			var intRate = prompt("Enter the interest rate percentage.");	// interest rate percentage
-			var deposit = prompt("Enter the deposit amount");				// unit in $'s
+			var intRate = prompt("Enter the annual interest rate percentage.");	// interest rate percentage
+			var deposit = prompt("Enter an annual deposit amount");				// unit in $'s
 			var str="";		// string instead of document.write
 			
 			balance = parseInt(balance);
@@ -35,13 +35,16 @@
 			str+=("<tr><th>Year</th><th>Savings $</th></tr>");
 			
 			// Generate Table
-			for(var year=1; year <=50; year++){
+			var year=1;
+			do{
 				// Same as 	balance = balance * (1+(intRate/100))
 				// and 		balance = balance + (balance*(intRate/100))
 				balance*=(1+(intRate/100)); 
 				balance+=deposit;
 				str+=("<tr><td>"+year+"</td><td>$ "+balance.toFixed(2)+"</td></tr>");
-			}
+				
+				year++;	//Increment the counter
+			}while(year <=50);
 			
 			// Close Table
 			str+=("</table>");
