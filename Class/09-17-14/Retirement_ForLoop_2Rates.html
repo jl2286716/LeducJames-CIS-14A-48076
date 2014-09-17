@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <!--
+            Programmer: 	James Leduc
+            Date Created: 	9/15/14
+            Purpose: 		For Loop Construct
+        -->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Retirement Table</title>
+    </head>
+    
+    <body>
+   	<h1>Retirement Table (For Loop)</h1>
+        <script type="text/javascript">
+			// Create and initialize variables.
+			var balance1 = prompt("Enter the starting balance for Plan 1.");			// unit in $'s
+			var intRate1 = prompt("Enter the interest rate percentage for Plan 1.");	// interest rate percentage
+			var balance2 = prompt("Enter the starting balance for Plan 2.");			// unit in $'s
+			var intRate2 = prompt("Enter the interest rate percentage for Plan 2.");	// interest rate percentage
+			var deposit = prompt("Enter the yearly deposit amount.");					// unit in $'s
+			var str="";		// Utilizing a string variable for concatenation instead of 'document.write'
+			
+			balance1 = parseInt(balance1);
+			balance2 = parseInt(balance2);
+			intRate1 = parseInt(intRate1);
+			intRate2 = parseInt(intRate2);
+			deposit = parseInt(deposit);
+			
+			// Output initial conditions.
+			str+=("<p>Initial Balance (Plan 1) = $"+balance1+"</p>");
+			str+=("<p>Interest Rate (Plan 1) = "+intRate1+"%</p>");
+			str+=("<p>Initial Balance (Plan 2) = $"+balance2+"</p>");
+			str+=("<p>Interest Rate (Plan 2) = "+intRate2+"%</p>");
+			str+=("<p>Yearly Deposit = $"+deposit+"</p>");
+			
+			// Create table
+			str+=("<table width='auto' border='1'>");
+			
+			// Generate table headers.
+			str+=("<tr><th>Year</th><th>Savings Plan 1</th><th>Savings Plan 2</th></tr>");
+			
+			// Generate Table
+			for(var year=1; year <=50; year++){
+				// Same as 	balance = balance * (1+(intRate/100))
+				// and 		balance = balance + (balance*(intRate/100))
+				balance1*=(1+(intRate1/100)); 
+				balance1+=deposit;
+				balance2*=(1+(intRate2/100)); 
+				balance2+=deposit;
+				str+=("<tr><td>"+year+"</td><td>$ "+balance1.toFixed(2)+"</td><td>$ "+balance2.toFixed(2)+"</td></tr>");
+			}
+			
+			// Close Table
+			str+=("</table>");
+			document.write(str);
+		</script>
+    </body>
+</html>
