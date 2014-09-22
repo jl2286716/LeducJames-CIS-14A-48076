@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <!--
+            Programmer: 	James Leduc
+            Date Created: 	9/15/14
+            Purpose: 		For Loop Construct
+        -->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Retirement Table</title>
+    </head>
+    
+    <body>
+   	<h1>Retirement Table (For Loop)</h1>
+        <script type="text/javascript">
+			// Create and initialize variables.
+			var balance = prompt("Enter a starting balance.");				// unit in $'s
+			var intRate = prompt("Enter the interest rate percentage.");	// interest rate percentage
+			var deposit = prompt("Enter the deposit amount");				// unit in $'s
+			var str="";		// string instead of document.write
+			
+			balance = parseInt(balance);
+			intRate = parseInt(intRate);
+			deposit = parseInt(deposit);
+						
+			// Declare arrays
+			var years=[];
+			var savings=[];
+			var interest=[];
+			var yearDep=[];		//yearly deposit
+			
+			// Initialize first element
+			years[0]=0;
+			savings[0]=balance;
+			interest[0]=0;
+			yearDep[0]=deposit;
+			
+			//populate arrays
+			for(var year=1; year <=50; year++){
+				years[year]=year;
+				
+				interest[year]=savings[year-1]*(intRate/100); 
+				savings[year]=savings[year-1]+interest[year]; 
+				yearDep[year]=deposit;
+				savings[year]+=yearDep[year];
+			}
+			
+			// Output initial conditions.
+			str+=("<p>Initial Balance = $"+balance+"</p>");
+			str+=("<p>Interest Rate = "+intRate+"%</p>");
+			str+=("<p>Yearly Deposit = $"+deposit+"</p>");
+			
+			// Create table
+			str+=("<table width='auto' border='1'>");
+			
+			// Generate table headers.
+			str+=("<tr><th>Year</th><th>Savings $</th><th>Yearly Interest %</th><th>Yearly Deposit $</th></tr>");
+			
+			// Generate Table
+			for(var year=0; year <=50; year++){
+				str+=("<tr><td>"+years[year]+"</td>");
+				str+=("<td>$ "+savings[year].toFixed(2)+"</td>");
+				str+=("<td>$ "+interest[year].toFixed(2)+"</td>");
+				str+=("<td>$ "+yearDep[year].toFixed(2)+"</td></tr>");
+			}
+			
+			// Close Table
+			str+=("</table>");
+			document.write(str);
+		</script>
+    </body>
+</html>
