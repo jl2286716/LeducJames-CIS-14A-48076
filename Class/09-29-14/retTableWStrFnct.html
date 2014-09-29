@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Example Functions</title>
+        <script type="text/javascript">
+			//Input
+			//	bala->Initial Balance $'s
+			//	intR->InterestRate %/year
+			//	nPer->Number of compouding eriods (years)
+			//	mDepo->Monthly Deposits accrued til end of year
+			//Output
+			//	retirement->$'s
+        	function retire(bala,intR,nPer,mDepo){
+				var retirement=bala;
+				for(var year=1;year<=nPer;year++){
+					retirement*=(1+intR/100);
+					retirement+=(mDepo*12);
+					retirement=retirement.toFixed(2);
+				}
+				return retirement;
+			}
+			
+			//	Array version of previos function
+        	function retArr(bala,intR,nPer,mDepo){
+				var retirement=[];
+				retirement[0]=bala;
+				for(var year=1;year<=nPer;year++){
+					retirement[year]=retirement[year-1]*(1+intR/100);
+					retirement[year]+=(mDepo*12);
+					retirement[year]=retirement[year].toFixed(2);
+				}
+				return retirement;
+			}
+			
+			//	Display Table
+			//Inputs
+			//	Heading array w col names
+			//	data in array
+			//Output
+			//	str->formatted table
+			function disTab(head,data){
+				var str="";
+					str+="<table width='auto' border='1'>";
+					str+="<tr>";
+				for(var col=0;col<head.length;col++){
+					str+="<th>"+head[col]+"</th>";
+				}
+				str+="</tr>";
+				for(var year=1;year<=data.length;year++){
+					str+="<tr>";
+					str+=("<td>"+year+"</td>");
+					str+=("<td>"+data[year]+"</td>");
+					str+="</tr>";
+				}
+				str+="</table>";
+				return str;
+			}
+        </script>
+        
+        
+    </head>
+    
+    <body>
+    	<script type="text/javascript">
+			//	Create a table that outputs retirement values
+			var bal=0;//dollars
+			var intRate=5;//percent interest yearly
+			var mDep=100;//monthly deposit
+			var str="";
+			str+="<h1>Balance = $"+bal+"</h1>";
+			str+="<h1>Interest Rate = "+intRate+"%/year</h1>";
+			str+="<h1>Monthly Deposit = $"+mDep+"</h1>";
+			//Output results in table
+			var nYears=50;
+			var ret = retArr(bal,intRate,nYears,mDep);
+			var heading=[];
+				heading[0]="Year";
+				heading[1]="Savings $";
+			str+=disTab(heading,ret);
+			document.write(str);
+		</script>            
+    </body>
+</html>
